@@ -2255,7 +2255,7 @@ STAGE 5 FORMAT REQUIREMENTS (VERY IMPORTANT):
   1) A heading line: <h3>What other Solve Ninjas have done</h3>
   2) Immediately after, an unordered list <ul> with 2-3 <li> items, each briefly describing one relevant Solve Ninja action (include the action title and a short description).
   3) Then a collapsible block using:
-     <details><summary>See detailed mentor steps</summary> ... </details>
+     <details><summary>Show detailed next steps</summary> ... </details>
      Inside the <details> tag, include an ordered list <ol> with 3-5 concrete steps the ninja can take next.
   4) After the </details> block, add a short motivational paragraph that connects their personal reason to the bigger civic impact.
 

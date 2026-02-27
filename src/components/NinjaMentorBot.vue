@@ -413,6 +413,41 @@ const restart = () => {
   border-radius: 18px 18px 18px 4px;
   border: 1px solid rgba(0, 168, 107, 0.18);
 }
+.assistant-content {
+  display: block;
+}
+.assistant-content h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--rb-green-dark);
+}
+.assistant-content p {
+  margin: 8px 0 0;
+}
+.assistant-content ul,
+.assistant-content ol {
+  margin: 6px 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+.assistant-content li {
+  margin-bottom: 4px;
+}
+.assistant-content details {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 168, 107, 0.25);
+  background: #ecfff6;
+}
+.assistant-content summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--rb-green-dark);
+  list-style: none;
+}
+.assistant-content summary::-webkit-details-marker {
+  display: none;
+}
 .bot-icon {
   margin-right: 6px;
   display: inline-flex;
