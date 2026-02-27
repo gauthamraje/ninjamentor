@@ -15,7 +15,7 @@
       <div
         v-for="(step, i) in STEPS"
         :key="i"
-        :class="['step', { done: i < currentStep, active: i === currentStep }]"
+        :class="['step', { done: i + 1 < stage, active: i + 1 === stage }]"
       >
         <span>{{ step.icon }}</span>
         <span>{{ step.label }}</span>
@@ -128,8 +128,6 @@ const STEPS = [
   { label: 'Ideas',          icon: '💡' },
   { label: 'Mentor feedback',icon: '🥷' },
 ]
-
-const currentStep = computed(() => Math.min(stage.value - 1, 4))
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const parseStage = (text) => {
@@ -435,17 +433,29 @@ const restart = () => {
   margin-bottom: 4px;
 }
 .assistant-content details {
-  margin-top: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 168, 107, 0.25);
-  background: #ecfff6;
+  margin-top: 12px;
 }
 .assistant-content summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--rb-green-dark);
+  color: #ffffff;
   cursor: pointer;
   font-weight: 600;
-  color: var(--rb-green-dark);
   list-style: none;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 168, 107, 0.45);
+}
+.assistant-content details[open] summary {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.assistant-content details ol {
+  margin-top: 10px;
+  padding: 8px 0 0 1.25rem;
 }
 .assistant-content summary::-webkit-details-marker {
   display: none;
