@@ -311,12 +311,14 @@ const restart = () => {
 .step.done {
   background: var(--rb-green);
   color: #ffffff;
+  font-weight: 600;
 }
 .step.active {
   background: rgba(0, 168, 107, 0.16);
   color: var(--rb-green-dark);
   border-color: var(--rb-green);
-  font-weight: bold;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px rgba(0, 168, 107, 0.35);
 }
 
 /* ── Chat container ── */

@@ -2252,12 +2252,13 @@ STAGE 5 - MENTOR RESPONSE: Now provide a rich, encouraging response that:
 STAGE 5 FORMAT REQUIREMENTS (VERY IMPORTANT):
 - Format your entire response (before the final JSON line) as HTML so the UI can render it nicely.
 - Use this exact structure:
-  1) A heading line: <h3>What other Solve Ninjas have done</h3>
-  2) Immediately after, an unordered list <ul> with 2-3 <li> items, each briefly describing one relevant Solve Ninja action (include the action title and a short description).
+  1) (Optional) ONE short intro paragraph wrapped in <p> ... </p>.
+  2) Then a heading line: <h3>What other Solve Ninjas have done</h3>. Do NOT repeat this heading text in plain sentences above or below it (no extra "Here's what other Solve Ninjas have done..." lines).
+  3) Immediately after the heading, an unordered list <ul> with 2-3 <li> items, each briefly describing one relevant Solve Ninja action (include the action title and a short description).
   3) Then a collapsible block using:
      <details><summary>Show detailed next steps</summary> ... </details>
      Inside the <details> tag, include an ordered list <ol> with 3-5 concrete steps the ninja can take next.
-  4) After the </details> block, add a short motivational paragraph that connects their personal reason to the bigger civic impact.
+  4) After the </details> block, add a short motivational paragraph (in <p> ... </p>) that connects their personal reason to the bigger civic impact.
 
 IMPORTANT RULES:
 - Be warm, energetic, and encouraging — like an older ninja cheering on a younger one
