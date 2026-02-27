@@ -416,26 +416,26 @@ const restart = () => {
 .assistant-content {
   display: block;
 }
-.assistant-content h3 {
+.assistant-content :deep(h3) {
   margin: 0 0 8px;
   font-size: 15px;
   color: var(--rb-green-dark);
 }
-.assistant-content p {
+.assistant-content :deep(p) {
   margin: 8px 0 0;
 }
-.assistant-content ul,
-.assistant-content ol {
+.assistant-content :deep(ul),
+.assistant-content :deep(ol) {
   margin: 6px 0 0 1.25rem;
   padding-left: 1.25rem;
 }
-.assistant-content li {
+.assistant-content :deep(li) {
   margin-bottom: 4px;
 }
-.assistant-content details {
+.assistant-content :deep(details) {
   margin-top: 12px;
 }
-.assistant-content summary {
+.assistant-content :deep(summary) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -449,11 +449,11 @@ const restart = () => {
   font-size: 13px;
   box-shadow: 0 2px 8px rgba(0, 168, 107, 0.45);
 }
-.assistant-content details[open] summary {
+.assistant-content :deep(details[open] summary) {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.assistant-content details ol {
+.assistant-content :deep(details ol) {
   margin-top: 10px;
   padding: 8px 0 0 1.25rem;
 }
