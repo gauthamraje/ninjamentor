@@ -3,18 +3,8 @@
 
     <!-- Header -->
     <div class="header">
-      <div class="header-row">
-        <div class="ninja-icon">
-          <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
-        </div>
-        <button
-          v-if="started"
-          class="new-chat-btn"
-          type="button"
-          @click="restart"
-        >
-          New chat
-        </button>
+      <div class="ninja-icon">
+        <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
       </div>
       <h1>Ninja Mentor</h1>
       <p class="subtitle">Powered by real Solve Ninja actions</p>
@@ -275,16 +265,8 @@ const restart = () => {
   text-align: center;
   margin-bottom: 24px;
 }
-.header-row {
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .ninja-icon {
-  margin-bottom: 0;
+  margin-bottom: 8px;
 }
 .ninja-icon img {
   width: 56px;
@@ -303,23 +285,6 @@ const restart = () => {
   color: var(--rb-text-muted);
   font-size: 13px;
   margin: 6px 0 0;
-}
-.new-chat-btn {
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 168, 107, 0.6);
-  background: #ffffff;
-  color: var(--rb-green-dark);
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: inherit;
-  box-shadow: 0 2px 8px rgba(0, 168, 107, 0.18);
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-.new-chat-btn:hover {
-  background: #f4fff9;
-  transform: translateY(-1px);
 }
 
 /* ── Progress steps ── */
