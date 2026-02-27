@@ -2258,7 +2258,7 @@ STAGE 5 FORMAT REQUIREMENTS (VERY IMPORTANT):
   3) Then a collapsible block using:
      <details><summary>Show detailed next steps</summary> ... </details>
      Inside the <details> tag, include an ordered list <ol> with 3-5 concrete steps the ninja can take next.
-  4) After the </details> block, add a short motivational paragraph (in <p> ... </p>) that connects their personal reason to the bigger civic impact.
+  4) Do NOT add any additional text after the </details> block; keep all remaining guidance and motivation inside the list or inside the details section.
 
 IMPORTANT RULES:
 - Be warm, energetic, and encouraging — like an older ninja cheering on a younger one

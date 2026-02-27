@@ -179,8 +179,8 @@ const startConversation = async () => {
     const text = await callOpenAI([
       { role: 'user', content: 'Start the conversation. You are at stage 1.' },
     ])
-    const parsedStage = parseStage(text)
-    if (parsedStage) stage.value = parsedStage
+    // Start at stage 1 when the first mentor message arrives
+    stage.value = 1
     messages.value.push({ role: 'assistant', content: cleanText(text) })
   } catch (e) {
     console.error(e)
@@ -215,8 +215,8 @@ const sendMessage = async () => {
     ]
 
     const text = await callOpenAI(apiMessages)
-    const parsedStage = parseStage(text)
-    if (parsedStage) stage.value = parsedStage
+    // Progress to the next stage on every successful answer (up to 5)
+    stage.value = Math.min(stage.value + 1, 5)
     messages.value.push({ role: 'assistant', content: cleanText(text) })
   } catch (e) {
     console.error(e)
