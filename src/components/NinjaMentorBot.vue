@@ -3,7 +3,9 @@
 
     <!-- Header -->
     <div class="header">
-      <div class="ninja-icon">🥷</div>
+      <div class="ninja-icon">
+        <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
+      </div>
       <h1>Ninja Mentor</h1>
       <p class="subtitle">Powered by real Solve Ninja actions</p>
     </div>
@@ -31,7 +33,10 @@
           Tell me about a problem you've discovered, and I'll help you become a real changemaker.
         </p>
         <button class="start-btn" @click="startConversation">
-          🥷 Begin My Journey
+          <span class="start-icon">
+            <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
+          </span>
+          <span>Begin My Journey</span>
         </button>
       </div>
 
@@ -43,7 +48,9 @@
           :class="['message-row', msg.role]"
         >
           <div :class="['bubble', msg.role]">
-            <span v-if="msg.role === 'assistant'" class="bot-icon">🥷</span>
+            <span v-if="msg.role === 'assistant'" class="bot-icon">
+              <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
+            </span>
             {{ msg.content }}
           </div>
         </div>
@@ -174,7 +181,7 @@ const startConversation = async () => {
     console.error(e)
     messages.value.push({
       role: 'assistant',
-      content: 'Hey Ninja! 🥷 What problem did you discover in your community recently?',
+      content: 'Hey Solve Ninja! What problem did you discover in your community recently?',
     })
     stage.value = 1
   }
@@ -228,13 +235,21 @@ const restart = () => {
 <style scoped>
 /* ── Layout ── */
 .wrapper {
+  --rb-green: #00a86b;
+  --rb-green-dark: #007b50;
+  --rb-yellow: #ffc857;
+  --rb-bg-light: #f4fff9;
+  --rb-bg-card: #ffffff;
+  --rb-text-main: #123524;
+  --rb-text-muted: #5b6b65;
+
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 50%, #0d1b2a 100%);
+  background: radial-gradient(circle at top, #d8ffeb 0%, #f4fff9 45%, #e5f5ff 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Georgia', serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   padding: 20px;
 }
 
@@ -243,16 +258,24 @@ const restart = () => {
   text-align: center;
   margin-bottom: 24px;
 }
-.ninja-icon { font-size: 48px; margin-bottom: 8px; }
+.ninja-icon {
+  margin-bottom: 8px;
+}
+.ninja-icon img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0, 168, 107, 0.5);
+}
 .header h1 {
-  color: #f5c842;
-  font-size: 28px;
+  color: var(--rb-green-dark);
+  font-size: 30px;
   font-weight: bold;
   letter-spacing: 1px;
   margin: 0;
 }
 .subtitle {
-  color: #8892b0;
+  color: var(--rb-text-muted);
   font-size: 13px;
   margin: 6px 0 0;
 }
@@ -272,20 +295,20 @@ const restart = () => {
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
-  font-family: 'Courier New', monospace;
-  background: rgba(255, 255, 255, 0.05);
-  color: #4a5568;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: rgba(0, 168, 107, 0.06);
+  color: var(--rb-text-muted);
   border: 1px solid transparent;
   transition: all 0.3s ease;
 }
 .step.done {
-  background: #f5c842;
-  color: #0f0c29;
+  background: var(--rb-green);
+  color: #ffffff;
 }
 .step.active {
-  background: rgba(245, 200, 66, 0.2);
-  color: #f5c842;
-  border-color: #f5c842;
+  background: rgba(0, 168, 107, 0.16);
+  color: var(--rb-green-dark);
+  border-color: var(--rb-green);
   font-weight: bold;
 }
 
@@ -293,9 +316,9 @@ const restart = () => {
 .chat-container {
   width: 100%;
   max-width: 680px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--rb-bg-card);
   border-radius: 16px;
-  border: 1px solid rgba(245, 200, 66, 0.15);
+  border: 1px solid rgba(0, 168, 107, 0.18);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -316,24 +339,39 @@ const restart = () => {
   gap: 28px;
 }
 .welcome p {
-  color: #ccd6f6;
+  color: var(--rb-text-main);
   font-size: 16px;
   line-height: 1.8;
 }
 .start-btn {
-  background: #f5c842;
-  color: #0f0c29;
+  background: var(--rb-green);
+  color: #ffffff;
   border: none;
   border-radius: 30px;
   padding: 14px 36px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  font-family: 'Georgia', serif;
-  box-shadow: 0 4px 20px rgba(245, 200, 66, 0.3);
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(0, 168, 107, 0.35);
   transition: transform 0.15s;
 }
-.start-btn:hover { transform: scale(1.05); }
+.start-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.start-icon img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+.start-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  background: var(--rb-green-dark);
+}
 
 /* ── Messages ── */
 .messages {
@@ -358,77 +396,87 @@ const restart = () => {
   white-space: pre-wrap;
 }
 .bubble.user {
-  background: linear-gradient(135deg, #f5c842, #e8a020);
-  color: #0f0c29;
+  background: linear-gradient(135deg, var(--rb-green), var(--rb-green-dark));
+  color: #ffffff;
   border-radius: 18px 18px 4px 18px;
 }
 .bubble.assistant {
-  background: rgba(255, 255, 255, 0.07);
-  color: #ccd6f6;
+  background: #f7fff9;
+  color: var(--rb-text-main);
   border-radius: 18px 18px 18px 4px;
-  border: 1px solid rgba(245, 200, 66, 0.1);
+  border: 1px solid rgba(0, 168, 107, 0.18);
 }
-.bot-icon { margin-right: 6px; font-size: 16px; }
+.bot-icon {
+  margin-right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.bot-icon img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
 
 .typing {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #f5c842;
+  color: var(--rb-green);
   animation: pulse 1s infinite;
 }
 
 /* ── Input area ── */
 .input-area {
   padding: 16px 20px;
-  border-top: 1px solid rgba(245, 200, 66, 0.1);
+  border-top: 1px solid rgba(0, 168, 107, 0.16);
   display: flex;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: #f5fff9;
 }
 textarea {
   flex: 1;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(245, 200, 66, 0.2);
+  background: #ffffff;
+  border: 1px solid rgba(0, 168, 107, 0.24);
   border-radius: 10px;
   padding: 10px 14px;
-  color: #ccd6f6;
+  color: var(--rb-text-main);
   font-size: 14px;
-  font-family: 'Georgia', serif;
+  font-family: inherit;
   resize: none;
   outline: none;
   line-height: 1.5;
 }
-textarea::placeholder { color: #4a5568; }
+textarea::placeholder { color: var(--rb-text-muted); }
 .send-btn {
-  background: #f5c842;
+  background: var(--rb-green);
   border: none;
   border-radius: 10px;
   padding: 0 18px;
   font-size: 20px;
   cursor: pointer;
-  color: #0f0c29;
+  color: #ffffff;
   transition: all 0.2s;
 }
 .send-btn:disabled {
-  background: rgba(245, 200, 66, 0.2);
-  color: #4a5568;
+  background: rgba(0, 168, 107, 0.12);
+  color: var(--rb-text-muted);
   cursor: not-allowed;
 }
 
 /* ── Restart ── */
 .restart-area {
   padding: 16px 20px;
-  border-top: 1px solid rgba(245, 200, 66, 0.1);
+  border-top: 1px solid rgba(0, 168, 107, 0.16);
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: #f5fff9;
 }
 .restart-btn {
-  background: transparent;
-  border: 1px solid #f5c842;
+  background: #ffffff;
+  border: 1px solid rgba(0, 168, 107, 0.7);
   border-radius: 20px;
   padding: 8px 24px;
-  color: #f5c842;
+  color: var(--rb-green-dark);
   font-size: 13px;
   cursor: pointer;
   font-family: 'Georgia', serif;
@@ -436,7 +484,7 @@ textarea::placeholder { color: #4a5568; }
 
 /* ── Footer ── */
 .footer {
-  color: #3d4a5e;
+  color: var(--rb-text-muted);
   font-size: 11px;
   margin-top: 16px;
   text-align: center;
