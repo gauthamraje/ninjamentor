@@ -51,7 +51,14 @@
             <span v-if="msg.role === 'assistant'" class="bot-icon">
               <img src="https://forum.solveninja.org/uploads/default/original/1X/321593460c29373164862fadbdfd8b0d04f9f043.png" alt="Solve Ninja" />
             </span>
-            {{ msg.content }}
+            <div
+              v-if="msg.role === 'assistant'"
+              class="assistant-content"
+              v-html="msg.content"
+            />
+            <div v-else>
+              {{ msg.content }}
+            </div>
           </div>
         </div>
 
