@@ -60,20 +60,25 @@
 
       <!-- Input Area -->
       <div v-if="started && stage < 5" class="input-area">
-        <textarea
-          ref="inputEl"
-          v-model="input"
-          placeholder="Share your thoughts..."
-          rows="2"
-          :disabled="loading"
-          @keydown.enter.exact.prevent="sendMessage"
-        />
-        <button
-          class="send-btn"
-          :disabled="loading || !input.trim()"
-          @click="sendMessage"
-        >
-          ➤
+        <div class="input-row">
+          <textarea
+            ref="inputEl"
+            v-model="input"
+            placeholder="Share your thoughts..."
+            rows="2"
+            :disabled="loading"
+            @keydown.enter.exact.prevent="sendMessage"
+          />
+          <button
+            class="send-btn"
+            :disabled="loading || !input.trim()"
+            @click="sendMessage"
+          >
+            ➤
+          </button>
+        </div>
+        <button class="end-chat-btn" @click="restart" type="button">
+          End conversation
         </button>
       </div>
 
@@ -441,8 +446,13 @@ const restart = () => {
   padding: 16px 20px;
   border-top: 1px solid rgba(0, 168, 107, 0.16);
   display: flex;
+  flex-direction: column;
   gap: 10px;
   background: #f5fff9;
+}
+.input-row {
+  display: flex;
+  gap: 10px;
 }
 textarea {
   flex: 1;
@@ -472,6 +482,20 @@ textarea::placeholder { color: var(--rb-text-muted); }
   background: rgba(0, 168, 107, 0.12);
   color: var(--rb-text-muted);
   cursor: not-allowed;
+}
+.end-chat-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--rb-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+.end-chat-btn:hover {
+  color: var(--rb-green-dark);
 }
 
 /* ── Restart ── */
