@@ -120,6 +120,7 @@ const started   = ref(false)
 const messagesEl = ref(null)
 const bottomEl   = ref(null)
 const inputEl    = ref(null)
+const threadId   = ref(null)
 
 const STEPS = [
   { label: 'Problem',        icon: '🔍' },
@@ -148,17 +149,20 @@ const focusInput = async () => {
   inputEl.value?.focus()
 }
 
-// ─── API call (OpenAI) ────────────────────────────────────────────────────────
+// ─── API call (OpenAI or Assistant with vector store) ─────────────────────────
 const callOpenAI = async (conversationMessages) => {
+  const payload = {
+    messages: conversationMessages,
+    model: 'gpt-4o',
+    max_tokens: 1500,
+  }
+  if (threadId.value) payload.threadId = threadId.value
+  else payload.systemPrompt = SYSTEM_PROMPT
+
   const response = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      systemPrompt: SYSTEM_PROMPT,
-      messages: conversationMessages,
-      model: 'gpt-4o',
-      max_tokens: 1500,
-    }),
+    body: JSON.stringify(payload),
   })
 
   if (!response.ok) {
@@ -167,6 +171,7 @@ const callOpenAI = async (conversationMessages) => {
   }
 
   const data = await response.json()
+  if (data.threadId) threadId.value = data.threadId
   return data.content
 }
 
@@ -207,12 +212,17 @@ const sendMessage = async () => {
   await scrollToBottom()
 
   try {
-    // Build API message history + stage instruction
-    const apiMessages = [
-      ...messages.value.slice(0, -1).map((m) => ({ role: m.role, content: m.content })),
-      { role: 'user', content: userText },
-      { role: 'user', content: `[Current stage: ${stage.value}. After this user response, move to stage ${stage.value + 1}.]` },
-    ]
+    // With Assistant (threadId): send only new messages. Otherwise full history for Chat Completions.
+    const apiMessages = threadId.value
+      ? [
+          { role: 'user', content: userText },
+          { role: 'user', content: `[Current stage: ${stage.value}. After this user response, move to stage ${stage.value + 1}.]` },
+        ]
+      : [
+          ...messages.value.slice(0, -1).map((m) => ({ role: m.role, content: m.content })),
+          { role: 'user', content: userText },
+          { role: 'user', content: `[Current stage: ${stage.value}. After this user response, move to stage ${stage.value + 1}.]` },
+        ]
 
     const text = await callOpenAI(apiMessages)
     // Progress to the next stage on every successful answer (up to 5)
@@ -234,6 +244,7 @@ const restart = () => {
   input.value    = ''
   stage.value    = 0
   started.value  = false
+  threadId.value = null
 }
 </script>
 
