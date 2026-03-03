@@ -10,18 +10,6 @@
       <p class="subtitle">Powered by real Solve Ninja actions</p>
     </div>
 
-    <!-- Progress Steps -->
-    <div v-if="started" class="steps">
-      <div
-        v-for="(step, i) in STEPS"
-        :key="i"
-        :class="['step', { done: i + 1 < stage, active: i + 1 === stage }]"
-      >
-        <span>{{ step.icon }}</span>
-        <span>{{ step.label }}</span>
-      </div>
-    </div>
-
     <!-- Chat Container -->
     <div class="chat-container">
 
@@ -121,14 +109,6 @@ const messagesEl = ref(null)
 const bottomEl   = ref(null)
 const inputEl    = ref(null)
 const threadId   = ref(null)
-
-const STEPS = [
-  { label: 'Problem',        icon: '🔍' },
-  { label: 'Why it matters', icon: '💛' },
-  { label: 'Actions taken',  icon: '⚡' },
-  { label: 'Ideas',          icon: '💡' },
-  { label: 'Mentor feedback',icon: '🥷' },
-]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const parseStage = (text) => {
@@ -294,40 +274,6 @@ const restart = () => {
   color: var(--rb-text-muted);
   font-size: 13px;
   margin: 6px 0 0;
-}
-
-/* ── Progress steps ── */
-.steps {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.step {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: rgba(0, 168, 107, 0.06);
-  color: var(--rb-text-muted);
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-.step.done {
-  background: var(--rb-green);
-  color: #ffffff;
-  font-weight: 600;
-}
-.step.active {
-  background: rgba(0, 168, 107, 0.16);
-  color: var(--rb-green-dark);
-  border-color: var(--rb-green);
-  font-weight: 700;
-  box-shadow: 0 0 0 1px rgba(0, 168, 107, 0.35);
 }
 
 /* ── Chat container ── */
