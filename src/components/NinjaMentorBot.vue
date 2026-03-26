@@ -167,7 +167,7 @@ const startConversation = async () => {
 
   try {
     const text = await callOpenAI([
-      { role: 'user', content: 'Start the conversation. You are at stage 1.' },
+      { role: 'user', content: 'Start the conversation.' },
     ])
     const parsed = parseStage(text)
     stage.value = parsed !== null ? parsed : 1
@@ -198,15 +198,14 @@ const sendMessage = async () => {
 
   try {
     // With Assistant (threadId): send only new messages. Otherwise full history for Chat Completions.
+    // Note: do NOT force stage progression here. Let the assistant infer the correct stage and return it via {"stage": n}.
     const apiMessages = threadId.value
       ? [
           { role: 'user', content: userText },
-          { role: 'user', content: `[Current stage: ${stage.value}. After this user response, move to stage ${stage.value + 1}.]` },
         ]
       : [
           ...messages.value.slice(0, -1).map((m) => ({ role: m.role, content: m.content })),
           { role: 'user', content: userText },
-          { role: 'user', content: `[Current stage: ${stage.value}. After this user response, move to stage ${stage.value + 1}.]` },
         ]
 
     const text = await callOpenAI(apiMessages)
