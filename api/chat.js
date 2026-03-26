@@ -23,8 +23,14 @@ async function runAssistant(openai, threadId, messages) {
     })
   }
 
+  // Keep outputs concise even if the assistant drifts.
+  // Note: `max_tokens` from the frontend payload only applies to Chat Completions,
+  // so we set an explicit cap for Assistants runs here.
   const run = await openai.beta.threads.runs.create(thread.id, {
     assistant_id: ASSISTANT_ID,
+    // Conservative cap to reduce long/multi-part replies.
+    // If you need longer responses for specific flows, raise this later.
+    max_completion_tokens: 450,
   })
 
   let runStatus = run
